@@ -10,6 +10,9 @@ void dh_hw::process_hw()
 
     for (;;)
     {
+        // Wait for hw_enable to be asserted by SW
+        while (!hw_enable.read())
+            wait();
 
         // Read inputs (blocking FIFO access)
         t[0] = from_sw0.read();
@@ -47,5 +50,15 @@ void dh_hw::process_hw()
         to_sw0.write(t[0]);
         to_sw1.write(t[1]);
         to_sw2.write(aHigh);
+
+        // Assert hw_done flag to indicate completion
+        hw_done.write(true);
+
+        // Wait for hw_enable to be deasserted by SW
+        while (hw_enable.read())
+            wait();
+
+        // Deassert hw_done flag
+        hw_done.write(false);
     }
 }

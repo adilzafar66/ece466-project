@@ -404,7 +404,7 @@ void dh_sw::NN_DigitDiv(
 
     // This function communicates with hardware
     NN_DigitDivHH(aHigh, t, c); // Outputs 'aHigh' and 't' are subject to verification
-
+    std::cout << "Here" << std::endl;
     // Verify: if the outputs are correct, nothing will be printed out
     if (t[0] != tRef[0])
         cout << "t[0] = " << t[0] << " --- expected: " << tRef[0] << endl

@@ -464,12 +464,12 @@ void dh_sw::NN_DigitDivHH(
     while (!hw_done.read())
         wait();
 
-    // Deassert hw_enable to stop hardware computation
-    hw_enable.write(false);
-
     t[0] = from_hw0.read();
     t[1] = from_hw1.read();
     aHigh = from_hw2.read();
+
+    // Deassert hw_enable to stop hardware computation
+    hw_enable.write(false);
     
     // Wait for hw_done to be deasserted by HW
     while (hw_done.read())

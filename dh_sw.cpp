@@ -399,12 +399,14 @@ void dh_sw::NN_DigitDiv(
     NN_DIGIT tRef[2];
     tRef[0] = t[0];
     tRef[1] = t[1];
-    std::cout << "Here" << std::endl;
+
     // This function computes reference values for verification
     NN_DigitDivHH_Ref(aHighRef, tRef, c);
 
     // This function communicates with hardware
     NN_DigitDivHH(aHigh, t, c); // Outputs 'aHigh' and 't' are subject to verification
+
+    std::cout << "Here" << std::endl;
 
     // Verify: if the outputs are correct, nothing will be printed out
     if (t[0] != tRef[0])

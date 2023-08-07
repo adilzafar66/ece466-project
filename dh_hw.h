@@ -3,15 +3,15 @@
 
 #include "systemc.h"
 #include "digit.h"
-#include "modules/bonus.h"
-#include "modules/adder.h"
-#include "modules/comparator.h"
-#include "modules/halfer.h"
-#include "modules/multiplexer.h"
-#include "modules/multiplier.h"
-#include "modules/register.h"
-#include "modules/splitter.h"
-#include "modules/subtractor.h"
+#include "bonus.h"
+#include "adder.h"
+#include "comparator.h"
+#include "halfer.h"
+#include "multiplexer.h"
+#include "multiplier.h"
+#include "register.h"
+#include "splitter.h"
+#include "subtractor.h"
 
 SC_MODULE(dh_hw)
 {

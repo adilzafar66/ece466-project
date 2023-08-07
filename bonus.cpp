@@ -9,7 +9,7 @@ void bonus::bonus_proc()
     while (true)
     {
         if (ready.read() == true)
-        {   // "Required Part" finished? (need valid t[0], t[1])
+        {
             t[0] = T0.read();
             t[1] = T1.read();
             c = C.read();

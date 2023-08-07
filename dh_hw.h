@@ -103,6 +103,7 @@ SC_MODULE(dh_hw)
         mux0.A(t1); mux0.B(t1_sub1); mux0.sel(comp_out); mux0.output(mux_out);
 
         // Define bonus connections
+        bon.clock(clk);
         bon.T0(l_comp); bon.T1(t1_sub3); bon.C(c); bon.AH(ah); bon.T0new(t0_out); 
         bon.T1new(t1_out); bon.AHnew(ah_out);
 

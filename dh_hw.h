@@ -7,6 +7,7 @@
 #include "adder.h"
 #include "comparator.h"
 #include "halfer.h"
+#include "halfer2.hpp"
 #include "multiplexer.h"
 #include "multiplier.h"
 #include "register.h"
@@ -50,6 +51,7 @@ SC_MODULE(dh_hw)
 
     // Halfers
     half half0;
+    half2 half1;
 
     // Splitters
     split split0;
@@ -67,7 +69,7 @@ SC_MODULE(dh_hw)
 
     SC_CTOR(dh_hw) : r0_in("r0_in"), r1_in("r1_in"), r2_in("r2_in"), r3_in("r3_in"),
                      r0_out("r0_out"), r1_out("r1_out"), r2_out("r2_out"), mux0("mux1"),
-                     mult0("mult1"), mult1("mult2"), split0("split"), comp0("comp0"), bon("bon"),
+                     mult0("mult1"), mult1("mult2"), split0("split"), comp0("comp0"), bon("bon"), half1("half1"),
                      sub0("sub0"), sub1("sub1"), sub2("sub2"), sub3("sub3"), sub4("sub4"), half0("half0")
     {
         dec.write(0x1);
@@ -88,7 +90,7 @@ SC_MODULE(dh_hw)
 
         // Define halfer connections
         half0.input_to_hh(u); half0.output_to_hh(u_to_hh);
-        half0.input_hh(u); half0.output_hh(u_hh);
+        half1.input_hh(u); half1.output_hh(u_hh);
 
         // Define subtractor connections
         sub0.A(max_nn); sub0.B(u_to_hh); sub0.output(r_comp);

@@ -6,9 +6,6 @@
 void dh_hw::process_hw()
 {
 
-    NN_DIGIT t[2], c, u, v;
-    NN_HALF_DIGIT aHigh, cLow, cHigh;
-
     // FSM state enum
     enum FSM_State
     {
@@ -62,7 +59,7 @@ void dh_hw::process_hw()
             wait();
             wait();
             wait();
-            std::cout << c_high.read() << "  " << c_low.read() << std::endl;
+            std::cout << u.read() << "  " << v.read() << std::endl;
             bon_ready.write(true);
             load0_out.write(SC_LOGIC_1);
             load1_out.write(SC_LOGIC_1);

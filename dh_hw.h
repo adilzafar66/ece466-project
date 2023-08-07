@@ -26,7 +26,7 @@ SC_MODULE(dh_hw)
     sc_out<bool> hw_done;
 
     // Interconnection Signals
-    sc_signal<sc_logic> comp_out;
+    sc_signal<sc_logic> comp_out_gt, comp_out_lt, comp_out_eq;
     sc_signal<UINT4> max_nn, dec;
     sc_signal<NN_DIGIT> t0, t1, c;
     sc_signal<NN_HALF_DIGIT> ah, ah_out;
@@ -98,10 +98,11 @@ SC_MODULE(dh_hw)
         sub4.A(t1_sub2); sub4.B(v); sub4.output(t1_sub3);
 
         // Define comparator connections
-        comp0.A(l_comp); comp0.B(r_comp); comp0.GT(comp_out);
+        comp0.A(l_comp); comp0.B(r_comp); comp0.GT(comp_out_gt);
+        comp0.LT(comp_out_lt); comp0.EQ(comp_out_eq);
 
         // Define multiplexer connections
-        mux0.A(t1); mux0.B(t1_sub1); mux0.sel(comp_out); mux0.output(mux_out);
+        mux0.A(t1); mux0.B(t1_sub1); mux0.sel(comp_out_gt); mux0.output(mux_out);
 
         // Define bonus connections
         bon.clock(clk); bon.ready(bon_ready);

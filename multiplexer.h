@@ -10,7 +10,12 @@ SC_MODULE(mux) {
     sc_in<NN_DIGIT> B;	
     sc_out<NN_DIGIT> output;
 
-    void mux_process();
+    void mux_process() {
+        if (sel.read() == SC_LOGIC_1) 
+            output.write(B.read());
+        else 
+            output.write(A.read());
+    }
     
     SC_CTOR(mux) {
         SC_METHOD(mux_process);

@@ -10,7 +10,9 @@ SC_MODULE (mult)
 	sc_in<T> B;
 	sc_out<NN_DIGIT> output;
 
-	void mult_process();
+	void mult_process() {
+		output.write(A.read() * B.read());
+	}
 
 	SC_CTOR (mult)
 	{
@@ -18,11 +20,5 @@ SC_MODULE (mult)
 		sensitive << A << B;
 	}
 };
-
-template<class T>
-void mult<T>::mult_process()
-{
-	output.write(A.read() * B.read());
-}
 
 #endif //MULTIPLIER_H

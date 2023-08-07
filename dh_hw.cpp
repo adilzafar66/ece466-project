@@ -10,7 +10,6 @@ void dh_hw::process_hw()
     enum FSM_State
     {
         WAIT,
-        INPUT,
         LOAD,
         STAGE,
         OUTPUT,
@@ -28,17 +27,12 @@ void dh_hw::process_hw()
             while (!hw_enable.read())
                 wait();
 
-            // Transition to INPUT state
-            state = INPUT;
-            break;
-
-        case INPUT:
-
-            // Transition to INPUT state
+            // Transition to LOAD state
             state = LOAD;
             break;
         
         case LOAD:
+
             load0_in.write(SC_LOGIC_1);
             load1_in.write(SC_LOGIC_1);
             load2_in.write(SC_LOGIC_1);
@@ -76,13 +70,8 @@ void dh_hw::process_hw()
             wait();
             wait();
             wait();
-
-            load0_out.write(SC_LOGIC_1);
-            load1_out.write(SC_LOGIC_1);
-            load2_out.write(SC_LOGIC_1);
-
             wait();
-            wait();
+
 
             // Transition to OUTPUT state
             state = OUTPUT;
@@ -90,9 +79,10 @@ void dh_hw::process_hw()
 
         case OUTPUT:
 
-            // NN_DIGIT t0_result = to_sw0.read();
-            // NN_DIGIT t1_result = to_sw1.read();
-            // NN_HALF_DIGIT ah_result = to_sw2.read();
+            load0_out.write(SC_LOGIC_1);
+            load1_out.write(SC_LOGIC_1);
+            load2_out.write(SC_LOGIC_1);
+            wait();
 
             // Transition to FINISH state
             state = FINISH;

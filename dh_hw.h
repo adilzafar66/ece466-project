@@ -38,6 +38,7 @@ SC_MODULE(dh_hw)
     sc_signal<sc_logic> comp_out_gt, comp_out_lt, comp_out_eq;
     sc_signal<sc_logic> load0_in, load1_in, load2_in, load3_in;
     sc_signal<sc_logic> load0_out, load1_out, load2_out, load3_out;
+    sc_signal<sc_logic> sub0_done, sub1_done, sub2_done, sub3_done, sub4_done;
     sc_signal<NN_HALF_DIGIT> ah, ah_out;
 
     // Registers and Components
@@ -77,11 +78,11 @@ SC_MODULE(dh_hw)
         mult1.A(c_high); mult1.B(ah); mult1.output(v);
         half0.input_hh(u); half0.output_hh(u_hh);
         to_half0.input_to_hh(u); to_half0.output_to_hh(u_to_hh);
-        sub0.A(max_nn); sub0.B(u_to_hh); sub0.output(r_comp);
-        sub1.A(t0); sub1.B(u_to_hh); sub1.output(l_comp);
-        sub2.A(t1); sub2.B(dec); sub2.output(t1_sub1);
-        sub3.A(mux_out); sub3.B(u_hh); sub3.output(t1_sub2);
-        sub4.A(t1_sub2); sub4.B(v); sub4.output(t1_sub3);
+        sub0.A(max_nn); sub0.B(u_to_hh); sub0.output(r_comp); sub0.done(sub0_done);
+        sub1.A(t0); sub1.B(u_to_hh); sub1.output(l_comp); sub1.done(sub1_done);
+        sub2.A(t1); sub2.B(dec); sub2.output(t1_sub1); sub2.done(sub2_done);
+        sub3.A(mux_out); sub3.B(u_hh); sub3.output(t1_sub2); sub3.done(sub3_done);
+        sub4.A(t1_sub2); sub4.B(v); sub4.output(t1_sub3); sub4.done(sub4_done);
         comp0.A(l_comp); comp0.B(r_comp); comp0.GT(comp_out_gt);
         comp0.LT(comp_out_lt); comp0.EQ(comp_out_eq);
 

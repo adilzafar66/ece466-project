@@ -33,6 +33,12 @@ void dh_hw::process_hw()
         
         case LOAD:
 
+            sub0_done.write(SC_LOGIC_0);
+            sub1_done.write(SC_LOGIC_0);
+            sub2_done.write(SC_LOGIC_0);
+            sub3_done.write(SC_LOGIC_0);
+            sub4_done.write(SC_LOGIC_0);
+
             load0_in.write(SC_LOGIC_1);
             load1_in.write(SC_LOGIC_1);
             load2_in.write(SC_LOGIC_1);
@@ -43,35 +49,15 @@ void dh_hw::process_hw()
             break;
 
         case STAGE:
-
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();
-            wait();      
-
+            while (sub0_done.read() != SC_LOGIC_1 &&
+                   sub1_done.read() != SC_LOGIC_1 && 
+                   sub2_done.read() != SC_LOGIC_1 &&
+                   sub3_done.read() != SC_LOGIC_1 &&
+                   sub4_done.read() != SC_LOGIC_1)
+                wait();      
             bon_ready.write(true);
-
             wait();
             wait();
-            wait();
-            wait();
-            wait();
-
 
             // Transition to OUTPUT state
             state = OUTPUT;

@@ -10,4 +10,5 @@ void half::to_high_half_process()
 void half::high_half_process()
 {
 	output_hh.write(HIGH_HALF(input_hh.read()));
+	std::cout << "HIGH HALF: " << HIGH_HALF(input_hh.read()) << std::endl;
 }

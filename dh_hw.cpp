@@ -68,9 +68,7 @@ void dh_hw::process_hw()
             wait();
             wait();
             wait();
-            wait();
-            std::cout << "MUX out: " << t1_sub2.read() << std::endl;
-            
+            wait();      
 
             bon_ready.write(true);
 

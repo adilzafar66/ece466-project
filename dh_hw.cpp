@@ -74,9 +74,9 @@ void dh_hw::process_hw()
 
         case OUTPUT:
 
-            NN_DIGIT t0_result = to_sw0.read();
-            NN_DIGIT t1_result = to_sw1.read();
-            NN_HALF_DIGIT ah_result = to_sw2.read();
+            // NN_DIGIT t0_result = to_sw0.read();
+            // NN_DIGIT t1_result = to_sw1.read();
+            // NN_HALF_DIGIT ah_result = to_sw2.read();
 
             // Transition to FINISH state
             state = FINISH;

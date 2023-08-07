@@ -7,7 +7,6 @@
 
 #include "systemc.h"
 #include "dh_sw.h"
-#include <iostream>
 
 static unsigned char PADDING[64] = {
     0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -498,7 +497,6 @@ void dh_sw::NN_DigitDivHH_Ref(
     }
 
     t[1] -= HIGH_HALF(u);
-    std::cout << "Software T1: " <<  HIGH_HALF(u) << std::endl;
     t[1] -= v;
 
     while ((t[1] > cHigh) || ((t[1] == cHigh) && (t[0] >= TO_HIGH_HALF(cLow))))

@@ -33,12 +33,6 @@ void dh_hw::process_hw()
         
         case LOAD:
 
-            sub0_done.write(SC_LOGIC_0);
-            sub1_done.write(SC_LOGIC_0);
-            sub2_done.write(SC_LOGIC_0);
-            sub3_done.write(SC_LOGIC_0);
-            sub4_done.write(SC_LOGIC_0);
-
             load0_in.write(SC_LOGIC_1);
             load1_in.write(SC_LOGIC_1);
             load2_in.write(SC_LOGIC_1);

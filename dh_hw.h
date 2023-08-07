@@ -12,6 +12,15 @@
 #include "modules/register.h"
 #include "modules/splitter.h"
 #include "modules/subtractor.h"
+#include "modules/bonus.cpp"
+#include "modules/adder.cpp"
+#include "modules/comparator.cpp"
+#include "modules/halfer.cpp"
+#include "modules/multiplexer.cpp"
+#include "modules/multiplier.cpp"
+#include "modules/register.cpp"
+#include "modules/splitter.cpp"
+#include "modules/subtractor.cpp"
 
 SC_MODULE(dh_hw)
 {

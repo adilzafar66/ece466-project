@@ -62,6 +62,9 @@ void dh_hw::process_hw()
             wait();
             wait();
             bon_ready.write(true);
+            load0_out.write(SC_LOGIC_1);
+            load1_out.write(SC_LOGIC_1);
+            load2_out.write(SC_LOGIC_1);
             wait();
             wait();
             wait();

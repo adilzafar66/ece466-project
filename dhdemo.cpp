@@ -38,6 +38,13 @@ int sc_main(int argc, char *argv[])
     DH_HW.hw_enable(enable); // hardware-enable input
     DH_HW.hw_done(done);     // hardware-done output
 
+    sc_trace_file* Tf = sc_create_vcd_trace_file("hs_traces");
+    Tf->set_time_unit(1, SC_NS);
+    sc_trace(Tf, clk, "clock");
+    sc_trace(Tf, enable, "enable");
+    sc_trace(Tf, done, "done");
+    sc_start(100, SC_NS);
+    sc_close_vcd_trace_file(Tf);
     sc_start();
 
     return (0);

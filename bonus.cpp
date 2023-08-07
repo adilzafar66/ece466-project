@@ -12,7 +12,6 @@ void bonus::bonus_proc()
         {   // "Required Part" finished? (need valid t[0], t[1])
             t[0] = T0.read();
             t[1] = T1.read();
-            std::cout << "Bonus T1: " << t[1] << std::endl;
             c = C.read();
             aHigh = AH.read();
             cHigh = (NN_HALF_DIGIT)HIGH_HALF(c);

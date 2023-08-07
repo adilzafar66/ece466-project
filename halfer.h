@@ -15,8 +15,8 @@ SC_MODULE (half)
 
 	SC_CTOR (half)
 	{
-		SC_METHOD(to_high_half_process);
 		SC_METHOD(high_half_process);
+		SC_METHOD(to_high_half_process);
 		sensitive << input_hh << input_to_hh;
 	}
 };

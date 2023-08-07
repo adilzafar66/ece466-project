@@ -1,6 +1,7 @@
 #include "systemc.h"
 #include "digit.h"
 #include "dh_hw.h"
+#include <iostream>
 
 void dh_hw::process_hw()
 {
@@ -61,6 +62,7 @@ void dh_hw::process_hw()
             wait();
             wait();
             wait();
+            std::cout << c_high.read() << "  " << c_low.read() << std::endl;
             bon_ready.write(true);
             load0_out.write(SC_LOGIC_1);
             load1_out.write(SC_LOGIC_1);

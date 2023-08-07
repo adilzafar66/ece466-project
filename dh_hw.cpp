@@ -65,6 +65,10 @@ void dh_hw::process_hw()
             wait();
             wait();
             wait();
+            wait();
+            wait();
+            wait();
+            wait();
 
             bon_ready.write(true);
 

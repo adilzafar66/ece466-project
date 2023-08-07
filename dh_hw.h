@@ -36,6 +36,7 @@ SC_MODULE(dh_hw)
     sc_signal<NN_DIGIT> t0_out, t1_out;
     sc_signal<sc_logic> load0_in, load1_in, load2_in, load3_in;
     sc_signal<sc_logic> load0_out, load1_out, load2_out, load3_out;
+    sc_signal<bool> bon_ready;
 
     // Registers
     reg<NN_DIGIT> r0_in, r1_in, r2_in, r0_out, r1_out;
@@ -103,7 +104,7 @@ SC_MODULE(dh_hw)
         mux0.A(t1); mux0.B(t1_sub1); mux0.sel(comp_out); mux0.output(mux_out);
 
         // Define bonus connections
-        bon.clock(clk);
+        bon.clock(clk); bon.ready(bon_ready);
         bon.T0(l_comp); bon.T1(t1_sub3); bon.C(c); bon.AH(ah); bon.T0new(t0_out); 
         bon.T1new(t1_out); bon.AHnew(ah_out);
 

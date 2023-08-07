@@ -59,6 +59,8 @@ void dh_hw::process_hw()
             wait();
             wait();
             wait();
+            wait();
+            wait();
             std::cout << "Hardware: " << u_to_hh.read() << "  " << max_nn.read() << std::endl;
             bon_ready.write(true);
             load0_out.write(SC_LOGIC_1);

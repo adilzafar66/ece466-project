@@ -32,7 +32,6 @@ void dh_hw::process_hw()
             break;
         
         case LOAD:
-
             load0_in.write(SC_LOGIC_1);
             load1_in.write(SC_LOGIC_1);
             load2_in.write(SC_LOGIC_1);
@@ -58,7 +57,6 @@ void dh_hw::process_hw()
             break;
 
         case OUTPUT:
-
             load0_out.write(SC_LOGIC_1);
             load1_out.write(SC_LOGIC_1);
             load2_out.write(SC_LOGIC_1);
@@ -69,7 +67,6 @@ void dh_hw::process_hw()
             break;
         
         case FINISH:
-            
             // Assert hw_done flag to indicate completion
             hw_done.write(true);
 

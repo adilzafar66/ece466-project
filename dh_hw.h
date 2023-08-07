@@ -7,7 +7,7 @@
 #include "adder.h"
 #include "comparator.h"
 #include "halfer.h"
-#include "halfer2.hpp"
+#include "halfer2.h"
 #include "multiplexer.h"
 #include "multiplier.h"
 #include "register.h"

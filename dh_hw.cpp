@@ -69,7 +69,7 @@ void dh_hw::process_hw()
             wait();
             wait();
             wait();
-            std::cout << "MUX out: " << mux_out.read() << std::endl;
+            std::cout << "MUX out: " << t1_sub2.read() << std::endl;
             
 
             bon_ready.write(true);

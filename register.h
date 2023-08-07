@@ -10,20 +10,16 @@ SC_MODULE(reg) {
     sc_in<T> input; 
     sc_out<T> output;	
 
-    void reg_process();
+    void reg_process() {
+        while (1) {
+            if (load.read() == SC_LOGIC_1) output.write(input.read());
+                wait();
+        }
+    }
     
     SC_CTOR(reg) {
         SC_CTHREAD(reg_process, clock.pos());
     }
 };
-
-template<class T>
-void reg<T>::reg_process() {
-    
-    while (1) {
-        if (load.read() == SC_LOGIC_1) output.write(input.read());
-	        wait();
-    }
-}
 
 #endif //REGISTER_H

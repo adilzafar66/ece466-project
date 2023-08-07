@@ -9,7 +9,10 @@ SC_MODULE (split)
 	sc_out<NN_DIGIT> output_high;
 	sc_out<NN_DIGIT> output_low;
 
-	void split_process();
+	void split_process() {
+		output_high.write(HIGH_HALF(input.read()));
+		output_low.write(LOW_HALF(input.read()));
+	}
 
 	SC_CTOR (split)
 	{

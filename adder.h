@@ -9,7 +9,9 @@ SC_MODULE (add)
 	sc_in<NN_DIGIT> B;
 	sc_out<NN_DIGIT> ouput;
 
-	void add_process();
+	void add_process() {
+		ouput.write(A.read() + B.read());
+	}
 
 	SC_CTOR (add)
 	{

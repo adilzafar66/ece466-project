@@ -9,7 +9,9 @@ SC_MODULE(sub) {
     sc_in<NN_DIGIT> B;	
     sc_out<NN_DIGIT> output;
 
-    void sub_process();
+    void sub_process() {
+        output.write(A.read() - B.read());
+    }
     
     SC_CTOR(sub) {
         SC_METHOD(sub_process);

@@ -494,7 +494,7 @@ void dh_sw::NN_DigitDivHH_Ref(
     v = (NN_DIGIT)aHigh * (NN_DIGIT)cHigh;
 
     if ((t[0] -= TO_HIGH_HALF(u)) > (MAX_NN_DIGIT - TO_HIGH_HALF(u))) {
-        std::cout << "Software: "<< t[0] << "   " << MAX_NN_DIGIT - TO_HIGH_HALF(u) << std::endl;
+        std::cout << "Software: "<< TO_HIGH_HALF(u) << "   " << MAX_NN_DIGIT << std::endl;
         t[1]--;
     }
 

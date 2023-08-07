@@ -16,12 +16,14 @@
 
 SC_MODULE(dh_hw)
 {
+    // Inputs from SW (Software) and Outputs to SW
     sc_in_clk clk;
     sc_in<NN_DIGIT> from_sw0, from_sw1, from_sw2;
     sc_in<NN_HALF_DIGIT> from_sw3;
     sc_out<NN_DIGIT> to_sw0, to_sw1;
     sc_out<NN_HALF_DIGIT> to_sw2;
 
+    // Control signals
     sc_in<bool> hw_enable;
     sc_out<bool> hw_done;
 
@@ -38,6 +40,7 @@ SC_MODULE(dh_hw)
     sc_signal<sc_logic> load0_out, load1_out, load2_out, load3_out;
     sc_signal<NN_HALF_DIGIT> ah, ah_out;
 
+    // Registers and Components
     reg<NN_DIGIT> r0_in, r1_in, r2_in, r0_out, r1_out;      // Registers
     reg<NN_HALF_DIGIT> r3_in, r2_out;                       // Registers
     mult<NN_HALF_DIGIT> mult0, mult1;                       // Multipliers
@@ -56,6 +59,7 @@ SC_MODULE(dh_hw)
         dec.write(0x1);
         max_nn.write(MAX_NN_DIGIT);
 
+        // Connect ports of the registers with other components
         r0_in.clock(clk); r0_in.input(from_sw0); r0_in.load(load0_in); r0_in.output(t0);
         r1_in.clock(clk); r1_in.input(from_sw1); r1_in.load(load1_in); r1_in.output(t1);
         r2_in.clock(clk); r2_in.input(from_sw2); r2_in.load(load2_in); r2_in.output(c);
@@ -64,23 +68,24 @@ SC_MODULE(dh_hw)
         r1_out.clock(clk); r1_out.input(t1_out); r1_out.load(load1_out); r1_out.output(to_sw1);
         r2_out.clock(clk); r2_out.input(ah_out); r2_out.load(load2_out); r2_out.output(to_sw2);
 
-        bon.T0(l_comp); bon.T1(t1_sub3); bon.C(c); bon.AH(ah); bon.T0new(t0_out);               // Define bonus connections
-        mux0.A(t1); mux0.B(t1_sub1); mux0.sel(comp_out_gt); mux0.output(mux_out);               // Define multiplexer connections
-        split0.input(c); split0.output_high(c_high); split0.output_low(c_low);                  // Define splitter connections
-        mult0.A(c_low); mult0.B(ah); mult0.output(u);                                           // Define multiplier connections
-        mult1.A(c_high); mult1.B(ah); mult1.output(v);                                          // Define multiplier connections
-        half0.input_hh(u); half0.output_hh(u_hh);                                               // Define halfer connections
-        to_half0.input_to_hh(u); to_half0.output_to_hh(u_to_hh);                                // Define to_halfer connections
-        sub0.A(max_nn); sub0.B(u_to_hh); sub0.output(r_comp);                                   // Define comparator connection
+        // Connect ports of custom components
+        bon.T0(l_comp); bon.T1(t1_sub3); bon.C(c); bon.AH(ah); bon.T0new(t0_out);
+        bon.clock(clk); bon.ready(bon_ready); bon.T1new(t1_out); bon.AHnew(ah_out);
+        mux0.A(t1); mux0.B(t1_sub1); mux0.sel(comp_out_gt); mux0.output(mux_out);
+        split0.input(c); split0.output_high(c_high); split0.output_low(c_low);
+        mult0.A(c_low); mult0.B(ah); mult0.output(u);
+        mult1.A(c_high); mult1.B(ah); mult1.output(v);
+        half0.input_hh(u); half0.output_hh(u_hh);
+        to_half0.input_to_hh(u); to_half0.output_to_hh(u_to_hh);
+        sub0.A(max_nn); sub0.B(u_to_hh); sub0.output(r_comp);
         sub1.A(t0); sub1.B(u_to_hh); sub1.output(l_comp);
         sub2.A(t1); sub2.B(dec); sub2.output(t1_sub1);
         sub3.A(mux_out); sub3.B(u_hh); sub3.output(t1_sub2);
         sub4.A(t1_sub2); sub4.B(v); sub4.output(t1_sub3);
         comp0.A(l_comp); comp0.B(r_comp); comp0.GT(comp_out_gt);
         comp0.LT(comp_out_lt); comp0.EQ(comp_out_eq);
-        bon.clock(clk); bon.ready(bon_ready);
-        bon.T1new(t1_out); bon.AHnew(ah_out);
 
+        // Create a new thread to process the hardware functionality
         SC_THREAD(process_hw);
         sensitive << clk.pos();
     }

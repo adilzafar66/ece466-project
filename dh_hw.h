@@ -4,7 +4,6 @@
 #include "systemc.h"
 #include "digit.h"
 #include "bonus.h"
-#include "adder.h"
 #include "comparator.h"
 #include "halfer.h"
 #include "to_halfer.h"

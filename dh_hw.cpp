@@ -59,7 +59,7 @@ void dh_hw::process_hw()
             wait();
             wait();
             wait();
-            std::cout << u.read() << "  " << v.read() << std::endl;
+            std::cout << "Hardware: " << l_comp.read() << "  " << r_comp.read() << std::endl;
             bon_ready.write(true);
             load0_out.write(SC_LOGIC_1);
             load1_out.write(SC_LOGIC_1);

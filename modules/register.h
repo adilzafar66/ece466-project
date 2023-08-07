@@ -3,11 +3,12 @@
 #include "systemc.h"
 #include "digit.h"
 
+template<class T>
 SC_MODULE(reg) {
     sc_in_clk clock;
     sc_in<sc_logic> reset, load;
-    sc_in<NN_DIGIT> input; 
-    sc_out<NN_DIGIT> output;	
+    sc_in<T> input; 
+    sc_out<T> output;	
 
     void reg_process();
     

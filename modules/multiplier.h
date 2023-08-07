@@ -3,10 +3,11 @@
 #include "systemc.h"
 #include "digit.h"
 
+template <class T>
 SC_MODULE (mult)
 {
 	sc_in<NN_DIGIT> A;
-	sc_in<NN_DIGIT> B;
+	sc_in<T> B;
 	sc_out<NN_DIGIT> output;
 
 	void mult_process();

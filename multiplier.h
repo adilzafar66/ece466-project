@@ -19,4 +19,10 @@ SC_MODULE (mult)
 	}
 };
 
+template<class T>
+void mult<T>::mult_process()
+{
+	output.write(A.read() * B.read());
+}
+
 #endif //MULTIPLIER_H

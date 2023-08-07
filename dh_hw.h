@@ -50,8 +50,8 @@ SC_MODULE(dh_hw)
     sub sub0, sub1, sub2, sub3, sub4;
 
     // Halfers
-    to_half to_half;
-    half half;
+    to_half to_half0;
+    half half0;
 
     // Splitters
     split split0;
@@ -69,8 +69,8 @@ SC_MODULE(dh_hw)
 
     SC_CTOR(dh_hw) : r0_in("r0_in"), r1_in("r1_in"), r2_in("r2_in"), r3_in("r3_in"),
                      r0_out("r0_out"), r1_out("r1_out"), r2_out("r2_out"), mux0("mux1"),
-                     mult0("mult1"), mult1("mult2"), split0("split"), comp0("comp0"), bon("bon"), half("half"),
-                     sub0("sub0"), sub1("sub1"), sub2("sub2"), sub3("sub3"), sub4("sub4"), to_half("to_half")
+                     mult0("mult1"), mult1("mult2"), split0("split"), comp0("comp0"), bon("bon"), half0("half0"),
+                     sub0("sub0"), sub1("sub1"), sub2("sub2"), sub3("sub3"), sub4("sub4"), to_half0("to_half0")
     {
         dec.write(0x1);
         max_nn.write(MAX_NN_DIGIT);
@@ -89,8 +89,8 @@ SC_MODULE(dh_hw)
         mult1.A(c_high); mult1.B(ah); mult1.output(v);
 
         // Define halfer connections
-        to_half.input_to_hh(u); to_half.output_to_hh(u_to_hh);
-        half.input_hh(u); half.output_hh(u_hh);
+        to_half0.input_to_hh(u); to_half0.output_to_hh(u_to_hh);
+        half0.input_hh(u); half0.output_hh(u_hh);
 
         // Define subtractor connections
         sub0.A(max_nn); sub0.B(u_to_hh); sub0.output(r_comp);
